@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to LearnVista</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Flash messages -->
+    <div class="flash-message" id="flash-message">
+        <!-- Success message will be inserted here -->
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <script>
+                const flashMessage = document.getElementById('flash-message');
+                // Loop through each message
+                {% for category, message in messages %}
+                    flashMessage.innerHTML += "{{ message|escape }}<br>"; // Append message safely
+                    flashMessage.classList.add("flash-{{ category }}"); // Add class for styling
+                {% endfor %}
+                flashMessage.style.display = 'block'; // Show the flash message
+
+                // Hide the flash message after 5 seconds
+                setTimeout(() => {
+                    flashMessage.style.display = 'none'; // Hide the flash message after 5 seconds
+                }, 5000);
+            </script>
+        {% endif %}
+    {% endwith %}
+
+    <header>
+        <div class="container">
+            <h1>LearnVista</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('login') }}">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">Courses</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h2>Unlock Your Potential with LearnVista</h2>
+                <p>Join thousands of learners and advance your career with our extensive range of courses.</p>
+                <a href="{{ url_for('login') }}" class="btn">Explore Courses</a>
+            </div>
+        </section>
+
+        <!-- Course Offerings -->
+        <section class="courses">
+            <div class="container">
+                <h2>Featured Courses</h2>
+                <div class="course-list">
+                    <div class="course">
+                        <h3>Web Development</h3>
+                        <p>Learn how to build modern, responsive websites from scratch.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                    <div class="course">
+                        <h3>Data Science</h3>
+                        <p>Master data analysis and machine learning techniques.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                    <div class="course">
+                        <h3>Digital Marketing</h3>
+                        <p>Discover strategies for successful online marketing campaigns.</p>
+                        <a href="#" class="btn">Learn More</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <h2>What Our Students Say</h2>
+                <div class="testimonial">
+                    <p>"LearnVista has changed my life! The courses are engaging and the instructors are top-notch!"</p>
+                    <cite>- Vithu</cite>
+                </div>
+                <div class="testimonial">
+                    <p>"I gained so many valuable skills through the courses I took. Highly recommend!"</p>
+                    <cite>- Nila</cite>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 LearnVista. All rights reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
