@@ -181,9 +181,6 @@ footer a:hover {
 
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-    }
 
     nav ul li {
         margin: 10px 0; /* Increase margin for vertical list */
